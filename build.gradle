@@ -92,10 +92,6 @@ task deploy(dependsOn: jar) {
     }
 }
 
-task a(){
-    System.out.println(System.getenv().keySet())
-}
-
 uploadArchives {
     repositories {
         mavenDeployer {

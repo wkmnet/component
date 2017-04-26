@@ -10,8 +10,11 @@
  */
 package xin.wukm.component;
 
+import org.apache.commons.beanutils.BeanMap;
 import xin.wukm.common.CommonUtil;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -59,5 +62,21 @@ public class Commons {
             return true;
         }
         return Pattern.matches(pattern,input);
+    }
+
+
+    /**
+     * Bean to Map<String,Object>
+     *
+     * @param bean
+     * @return
+     */
+    public Map<String,Object> beanToMap(Object bean){
+        Map<String,Object> result = new HashMap<>();
+        Map<String,Object> source = new BeanMap(bean);
+        for(Object key:source.keySet()){
+            result.put(String.valueOf(key),source.get(key));
+        }
+        return result;
     }
 }

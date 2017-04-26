@@ -11,6 +11,7 @@
 package xin.wukm.common;
 
 import com.google.common.base.Strings;
+import org.apache.commons.beanutils.BeanMap;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -18,6 +19,8 @@ import org.apache.commons.lang3.RandomStringUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -231,4 +234,18 @@ public class CommonUtil {
         return Strings.isNullOrEmpty(string);
     }
 
+
+    /**
+     * Bean to Map<String,Object>
+     * @param bean
+     * @return
+     */
+    public static Map<String,Object> beanToMap(Object bean){
+        Map<String,Object> result = new HashMap<>();
+        Map<String,Object> source = new BeanMap(bean);
+        for(Object key:source.keySet()){
+            result.put(String.valueOf(key),source.get(key));
+        }
+        return result;
+    }
 }
